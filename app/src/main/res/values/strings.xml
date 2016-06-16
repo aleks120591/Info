@@ -1,11 +1,11 @@
 <resources>
-    <string name="app_name">Info</string>
+    <string name="app_name">Информация</string>
 
     <string name="navigation_drawer_open">Open navigation drawer</string>
     <string name="navigation_drawer_close">Close navigation drawer</string>
 
-    <string name="action_settings">Settings</string>
-    <string name="title_activity_settings">Settings</string>
+    <string name="action_settings">Настройки</string>
+    <string name="title_activity_settings">Настройки</string>
 
     <!-- Strings related to Settings -->
 
