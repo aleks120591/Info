@@ -104,7 +104,7 @@ public class MainActivity extends AppCompatActivity
     }
 
     private void setList() {
-
+        ITEMS.clear();
     }
 
     private class Task extends AsyncTask<Void, Void, Void>{
