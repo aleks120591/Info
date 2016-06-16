@@ -1,6 +1,7 @@
 package com.warlock.info;
 
 import android.content.Intent;
+import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.NavigationView;
@@ -14,10 +15,13 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 
+import com.warlock.info.utils.Constants;
+
 import com.warlock.info.settings.SettingsActivity;
+import com.warlock.library.root.RootUtils;
 
 public class MainActivity extends AppCompatActivity
-        implements NavigationView.OnNavigationItemSelectedListener {
+        implements NavigationView.OnNavigationItemSelectedListener, Constants {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -97,5 +101,31 @@ public class MainActivity extends AppCompatActivity
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         drawer.closeDrawer(GravityCompat.START);
         return true;
+    }
+
+    private void setList() {
+
+    }
+
+    private class Task extends AsyncTask<Void, Void, Void>{
+
+        private boolean hasRoot;
+        private boolean hasBusybox;
+
+        @Override
+        protected Void doInBackground(Void... params) {
+            if (RootUtils.rooted()) hasRoot = RootUtils.rootAccess();
+            if (hasRoot) hasBusybox = RootUtils.busyboxInstalled();
+
+            if (hasRoot && hasBusybox) {
+                // Set permissions to specific files which are not readable by default
+                String[] writePermission = {LMK_MINFREE};
+                for (String file : writePermission)
+                    RootUtils.runCommand("chmod 644 " + file);
+
+                setList();
+            }
+            return null;
+        }
     }
 }
