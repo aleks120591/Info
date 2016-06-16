@@ -31,7 +31,7 @@
                 android:icon="@drawable/ic_menu_send"
                 android:title="Send" />
             <item
-                android:id="@+id/settings"
+                android:id="@+id/settings_navig"
                 android:icon="@drawable/settings_navig"
                 android:title="@string/action_settings"/>
         </menu>
